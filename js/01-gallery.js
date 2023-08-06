@@ -22,19 +22,17 @@ function createMarkup(arr) {
 
 imageList.insertAdjacentHTML('beforeend', createMarkup(galleryItems));
 imageList.addEventListener('click', handlerClick);
-
 function handlerClick(evt) {
-    evt.preventDefault();
-    if (!evt.target.classList.contains('gallery__image')) {
-        return
+  evt.preventDefault();
+  if (!evt.target.classList.contains('gallery__img')) {
+    return;
+  }
+  const picture = evt.target.dataset.source;
+  const instance = basicLightbox.create(`<img src="${picture}" >`);
+  instance.show();
+  imageList.addEventListener('keydown', (evt) => {
+    if (evt.code === 'Escape') {
+      instance.close();
     }
-    const picture = evt.target.dataset.source;
-    const instance = basicLightbox.create(`<img src="${picture}" alt="${description}">`);
-    instance.show();
-
-    imageList.addEventListener('keydown', (evt) => {
-        if (evt.code === "Escape") {
-            instance.close();
-        }
-    });
+  });
 }
