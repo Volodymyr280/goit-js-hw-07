@@ -2,6 +2,7 @@ import { galleryItems } from './gallery-items.js';
 // Change code below this line
 
 console.log(galleryItems);
+console.log(basicLightbox);
 
 const imageList = document.querySelector('.gallery');
 
@@ -28,9 +29,9 @@ function handlerClick(evt) {
         return
     }
     const picture = evt.target.dataset.source;
-    const instance = basicLightbox.create(`<div class="modal"></div><img src="${picture}" alt=""></div>`);
+    const instance = basicLightbox.create(`<img src="${picture}" alt="${description}">`);
     instance.show();
-    
+
     imageList.addEventListener('keydown', (evt) => {
         if (evt.code === "Escape") {
             instance.close();
